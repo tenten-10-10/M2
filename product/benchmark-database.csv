@@ -1,0 +1,54 @@
+metric,segment_or_stage,bucket,range,notes
+LTV:CAC ratio,All SaaS,Unsustainable,< 1.5 : 1,Spending near or above lifetime value to acquire
+LTV:CAC ratio,All SaaS,Needs work,1.5 - 3 : 1,Below the common 3:1 target
+LTV:CAC ratio,All SaaS,Healthy,3 - 5 : 1,Textbook efficient growth zone
+LTV:CAC ratio,All SaaS,Possibly under-investing,> 5 : 1,May be leaving growth on the table
+CAC payback (months),All SaaS,Best-in-class,< 6,Growth largely self-funding
+CAC payback (months),All SaaS,Healthy,6 - 12,Common target for efficient SaaS
+CAC payback (months),All SaaS,Market median,~18,Per published benchmark datasets
+CAC payback (months),All SaaS,Cash-intensive,> 18,Ties up significant capital per customer
+Monthly logo churn,SMB / self-serve,Best-in-class,< 1%,~11% annualised
+Monthly logo churn,SMB / self-serve,Healthy,1 - 3%,Typical for SMB SaaS
+Monthly logo churn,SMB / self-serve,Needs attention,3 - 5%,Compounds to ~30-46% annually
+Monthly logo churn,SMB / self-serve,High,> 5%,Caps growth severely
+Annual logo churn,Mid-market / enterprise,Best-in-class,< 5%,Lower churn expected with larger accounts
+Annual logo churn,Mid-market / enterprise,Healthy,5 - 10%,
+Net revenue retention (NRR),All SaaS,Median,~100 - 102%,
+Net revenue retention (NRR),All SaaS,Good,100 - 110%,Net negative churn
+Net revenue retention (NRR),All SaaS,Best-in-class,110 - 120%+,Public leaders often ~114%
+Gross revenue retention (GRR),All SaaS,Best-in-class,> 90%,Common in enterprise
+Gross revenue retention (GRR),All SaaS,Healthy,80 - 90%,
+Gross revenue retention (GRR),All SaaS,Needs work,< 80%,Expansion may be masking churn
+Rule of 40,At scale ($5M+ ARR),Elite,>= 60%,Growth % + profit margin %
+Rule of 40,At scale ($5M+ ARR),Passing,>= 40%,Balanced growth and profitability
+Rule of 40,At scale ($5M+ ARR),Below benchmark,25 - 40%,
+SaaS magic number,All SaaS,Scale spend,>= 1.0,Each S&M dollar returns >$1 new ARR
+SaaS magic number,All SaaS,Efficient,0.75 - 1.0,Generally supports more investment
+SaaS magic number,All SaaS,Optimise first,0.5 - 0.75,
+SaaS magic number,All SaaS,Inefficient,< 0.5,Fix funnel before scaling spend
+SaaS quick ratio,All SaaS,Best-in-class,>= 4,Adds ~4x the MRR it loses
+SaaS quick ratio,All SaaS,Healthy,2 - 4,
+SaaS quick ratio,All SaaS,Shrinking,< 1,Losing more MRR than added
+Burn multiple,All SaaS,Amazing,< 1.0,Net burn / net new ARR
+Burn multiple,All SaaS,Great,1.0 - 1.5,
+Burn multiple,All SaaS,Watch,1.5 - 2.0,
+Burn multiple,All SaaS,Inefficient,> 2.0,
+Cash runway (months),Venture-backed,Comfortable,>= 18,Room to hit milestones before raising
+Cash runway (months),Venture-backed,Healthy,12 - 18,Begin planning next raise
+Cash runway (months),Venture-backed,Start fundraising,6 - 12,Raising takes 3-6 months
+Cash runway (months),Venture-backed,Critical,< 6,Extend urgently
+SaaS gross margin,All SaaS,Best-in-class,>= 80%,
+SaaS gross margin,All SaaS,Healthy,70 - 80%,
+SaaS gross margin,All SaaS,Sub-scale / services-heavy,50 - 70%,
+ARR per employee,All SaaS,Best-in-class,>= $250k,Rises with scale
+ARR per employee,All SaaS,Healthy,$150k - $250k,
+ARR per employee,All SaaS,Pre-scale,$100k - $150k,
+Trial conversion,Opt-out free trial (card),Typical,~50 - 60%,
+Trial conversion,Opt-in free trial (no card),Typical,~15 - 25%,
+Trial conversion,Freemium,Typical,~2 - 5%,
+DAU/MAU stickiness,Engagement,Daily-habit product,>= 50%,
+DAU/MAU stickiness,Engagement,Good,20 - 50%,
+DAU/MAU stickiness,Engagement,Infrequent-use,10 - 20%,
+ACV,Self-serve / SMB,Typical,< $5k,Maps to go-to-market motion
+ACV,Mid-market,Typical,$15k - $100k,
+ACV,Enterprise,Typical,$100k+,

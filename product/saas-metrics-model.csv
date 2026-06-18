@@ -1,0 +1,33 @@
+SaaS Metrics Model — monthly template (replace example numbers with yours),,,,,,,,,,,,
+Section: MRR MOVEMENTS (inputs),,,,,,,,,,,,
+Line,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+Starting MRR,50000,55500,61200,67050,73250,79700,86650,93750,101300,109150,117500,126200
+New MRR,8000,8500,9000,9500,10000,10800,11200,11900,12500,13100,13800,14500
+Expansion MRR,3000,3200,3400,3600,3800,4000,4300,4500,4800,5100,5400,5700
+Contraction MRR,1000,1100,1150,1200,1250,1350,1400,1450,1500,1600,1650,1700
+Churned MRR,4500,4900,5400,5700,6100,6500,7000,7400,7950,8250,8850,9300
+,,,,,,,,,,,,
+Section: COMPUTED (paste these formulas in your spreadsheet),,,,,,,,,,,,
+Net new MRR = New + Expansion - Contraction - Churned,5500,5700,5850,6200,6450,6950,7100,7550,7850,8350,8700,9200
+Ending MRR = Starting + Net new MRR,55500,61200,67050,73250,79700,86650,93750,101300,109150,117500,126200,135400
+ARR = Ending MRR x 12,666000,734400,804600,879000,956400,1039800,1125000,1215600,1309800,1410000,1514400,1624800
+MRR growth % = Net new / Starting,11.0%,10.3%,9.6%,9.2%,8.8%,8.7%,8.2%,8.1%,7.7%,7.7%,7.4%,7.3%
+Quick ratio = (New+Expansion)/(Contraction+Churned),2.0,1.95,1.89,1.9,1.88,1.88,1.79,1.85,1.83,1.85,1.83,1.84
+NRR % = (Starting+Exp-Contr-Churn)/Starting,103.0%,102.2%,101.4%,101.6%,101.4%,101.4%,100.8%,101.2%,101.1%,101.3%,101.1%,101.2%
+GRR % = (Starting-Contr-Churn)/Starting,89.0%,89.2%,89.3%,89.7%,89.6%,90.1%,90.3%,90.5%,90.6%,91.0%,91.1%,91.3%
+,,,,,,,,,,,,
+Section: UNIT ECONOMICS (inputs + computed),,,,,,,,,,,,
+ARPA (monthly),120,,,,,,,,,,,
+Gross margin %,78%,,,,,,,,,,,
+Monthly customer churn %,3%,,,,,,,,,,,
+CAC,1200,,,,,,,,,,,
+LTV = (ARPA x GM%) / churn%,3120,,,,,,,,,,,
+LTV:CAC = LTV / CAC,2.6,,,,,,,,,,,
+CAC payback months = CAC / (ARPA x GM%),12.8,,,,,,,,,,,
+,,,,,,,,,,,,
+Section: CASH (inputs + computed),,,,,,,,,,,,
+Monthly cash out,120000,,,,,,,,,,,
+Monthly cash in,80000,,,,,,,,,,,
+Net burn = out - in,40000,,,,,,,,,,,
+Cash on hand,1500000,,,,,,,,,,,
+Runway months = cash / net burn,37.5,,,,,,,,,,,

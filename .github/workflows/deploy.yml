@@ -1,0 +1,39 @@
+name: Deploy to Vercel
+
+# Manual deploy only. Production is currently deployed via the Vercel CLI.
+# To enable this workflow, add a repo secret VERCEL_TOKEN
+# (Settings -> Secrets and variables -> Actions) and run it from the Actions tab.
+# (Prefer connecting the repo in the Vercel dashboard for push-based auto-deploys.)
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Deploy to production
+        id: deploy
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN secret is not set. Add it under Settings -> Secrets and variables -> Actions, then re-run."
+            exit 1
+          fi
+          URL=$(vercel deploy --prod --yes --token="$VERCEL_TOKEN")
+          echo "Deployed to: $URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          {
+            echo "### ✅ Deployed to Vercel"
+            echo ""
+            echo "$URL"
+          } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
