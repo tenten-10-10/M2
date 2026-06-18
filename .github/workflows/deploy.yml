@@ -1,14 +1,11 @@
 name: Deploy to Vercel
 
-# Deploys on push to the working branch (and can be run manually once this
-# workflow is on the default branch). Requires a repo secret VERCEL_TOKEN
-# (Settings -> Secrets and variables -> Actions). The Vercel CLI auto-creates
-# and links the project on first run thanks to --yes.
+# Manual deploy only. Production is currently deployed via the Vercel CLI.
+# To enable this workflow, add a repo secret VERCEL_TOKEN
+# (Settings -> Secrets and variables -> Actions) and run it from the Actions tab.
+# (Prefer connecting the repo in the Vercel dashboard for push-based auto-deploys.)
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - claude/funny-mayer-kfdha0
 
 jobs:
   deploy:
