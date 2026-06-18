@@ -44,16 +44,23 @@ export async function POST(req: Request) {
 
   try {
     if (SERVER_ENV.leadWebhookUrl) {
-      await fetch(SERVER_ENV.leadWebhookUrl, {
+      const res = await fetch(SERVER_ENV.leadWebhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type: "metrics_review", ...lead }),
       });
+      if (!res.ok) {
+        console.error("[lead] webhook rejected with status", res.status);
+        return NextResponse.json(
+          { error: "We couldn't send that. Please email us instead." },
+          { status: 502 },
+        );
+      }
       return NextResponse.json({ ok: true, message: "Thanks — we'll be in touch within two business days." });
     }
 
     if (SERVER_ENV.resendApiKey && SERVER_ENV.leadNotifyEmail) {
-      await fetch("https://api.resend.com/emails", {
+      const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${SERVER_ENV.resendApiKey}`,
@@ -67,6 +74,13 @@ export async function POST(req: Request) {
           text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nARR: ${arr}\n\n${message}`,
         }),
       });
+      if (!res.ok) {
+        console.error("[lead] Resend rejected with status", res.status);
+        return NextResponse.json(
+          { error: "We couldn't send that. Please email us instead." },
+          { status: 502 },
+        );
+      }
       return NextResponse.json({ ok: true, message: "Thanks — we'll be in touch within two business days." });
     }
 

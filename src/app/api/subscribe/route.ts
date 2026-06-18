@@ -26,9 +26,15 @@ export async function POST(req: Request) {
     );
   }
 
+  // Track whether any provider was configured & attempted, so we only return
+  // the dev-only success fallback when NONE is configured. A configured
+  // provider that rejects must surface an error, not a false "subscribed".
+  let attempted = false;
+
   try {
     // 1) Buttondown
     if (SERVER_ENV.buttondownApiKey) {
+      attempted = true;
       const res = await fetch("https://api.buttondown.email/v1/subscribers", {
         method: "POST",
         headers: {
@@ -45,10 +51,12 @@ export async function POST(req: Request) {
       if (res.ok || res.status === 400) {
         return NextResponse.json({ ok: true, message: "You're subscribed — check your inbox." });
       }
+      console.error("[subscribe] Buttondown rejected with status", res.status);
     }
 
     // 2) ConvertKit (Kit)
     if (SERVER_ENV.convertkitApiKey && SERVER_ENV.convertkitFormId) {
+      attempted = true;
       const res = await fetch(
         `https://api.convertkit.com/v3/forms/${SERVER_ENV.convertkitFormId}/subscribe`,
         {
@@ -64,19 +72,32 @@ export async function POST(req: Request) {
       if (res.ok) {
         return NextResponse.json({ ok: true, message: "You're subscribed — check your inbox." });
       }
+      console.error("[subscribe] ConvertKit rejected with status", res.status);
     }
 
     // 3) Generic webhook
     if (SERVER_ENV.emailWebhookUrl) {
-      await fetch(SERVER_ENV.emailWebhookUrl, {
+      attempted = true;
+      const res = await fetch(SERVER_ENV.emailWebhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source, tag }),
       });
-      return NextResponse.json({ ok: true, message: "You're on the list." });
+      if (res.ok) {
+        return NextResponse.json({ ok: true, message: "You're on the list." });
+      }
+      console.error("[subscribe] webhook rejected with status", res.status);
     }
 
-    // 4) No provider configured: accept gracefully so UX works in dev.
+    // A provider was configured but every attempt failed — be honest.
+    if (attempted) {
+      return NextResponse.json(
+        { error: "We couldn't add you right now. Please try again shortly." },
+        { status: 502 },
+      );
+    }
+
+    // No provider configured: accept gracefully so UX works in dev.
     console.info(`[subscribe] (no provider configured) ${email} | ${source} | ${tag}`);
     return NextResponse.json({
       ok: true,
